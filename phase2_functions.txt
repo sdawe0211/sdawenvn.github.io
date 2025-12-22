@@ -1,0 +1,60 @@
+// Check if Phase 1 is completed
+function checkPhase1Completion() {
+    if (phase1Completed.eggLiquid && phase1Completed.tomatoChunks) {
+        console.log('🎉 Phase 1 completed! Moving to Phase 2...');
+        currentPhase = 2;
+        updateCookingInstructions();
+    }
+}
+
+// Update cooking instructions UI
+function updateCookingInstructions() {
+    const phaseTitle = document.getElementById('cookingPhaseTitle');
+    const stepsContent = document.getElementById('cookingStepsContent');
+    
+    if (currentPhase === 2) {
+        // Update title
+        phaseTitle.textContent = '第二階段：分次入鍋';
+        
+        // Update steps content
+        stepsContent.innerHTML = `
+            <!-- Step 3 -->
+            <div class="flex gap-3 p-3 bg-black bg-opacity-50 rounded-lg border border-cyan-400 border-opacity-30">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-cyan-400 bg-opacity-20 flex items-center justify-center">
+                        <span class="text-cyan-400 font-bold">3</span>
+                    </div>
+                </div>
+                <div class="flex-1 text-sm leading-relaxed">
+                    將【<span class="text-yellow-300 font-semibold">蛋液</span>】從大碗拖移至【<span class="text-orange-400 font-semibold">平底鍋</span>】。
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex gap-3 p-3 bg-black bg-opacity-50 rounded-lg border border-cyan-400 border-opacity-30">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-cyan-400 bg-opacity-20 flex items-center justify-center">
+                        <span class="text-cyan-400 font-bold">4</span>
+                    </div>
+                </div>
+                <div class="flex-1 text-sm leading-relaxed">
+                    將【<span class="text-red-400 font-semibold">番茄塊</span>】從砧板拖移至【<span class="text-orange-400 font-semibold">平底鍋</span>】。
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="flex gap-3 p-3 bg-black bg-opacity-50 rounded-lg border border-cyan-400 border-opacity-30">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-cyan-400 bg-opacity-20 flex items-center justify-center">
+                        <span class="text-cyan-400 font-bold">5</span>
+                    </div>
+                </div>
+                <div class="flex-1 text-sm leading-relaxed">
+                    將【<span class="text-yellow-400 font-semibold">調味罐</span>】與【<span class="text-amber-700 font-semibold">醬油罐</span>】從欄位拖移至【<span class="text-orange-400 font-semibold">平底鍋</span>】。
+                </div>
+            </div>
+        `;
+        
+        console.log('✓ Cooking instructions updated to Phase 2');
+    }
+}
