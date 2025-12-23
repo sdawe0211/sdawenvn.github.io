@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Prevent caching to ensure latest version is always loaded -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>VR 烹飪遊戲 - v2.1 食材欄底部版本</title>
+    <script>
+        const originalWarn = console.warn;
+        console.warn = function (...args) {
+            if (args[0] && typeof args[0] === 'string') {
+                // Filter out Tailwind CSS warnings
+                if (args[0].includes('cdn.tailwindcss.com')) return;
+                // Filter out FBX loader unsupported texture warnings
+                if (args[0].includes('THREE.FBXLoader') &&
+                    (args[0].includes('ShininessExponent') || args[0].includes('ReflectionFactor'))) {
+                    return;
+                }
+            }
+            originalWarn.apply(console, args);
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #0a0a0a;
+            margin: 0;
+            color: white;
+        }
+
+        .neon-border {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.2);
+            border: 2px solid #00ffff;
+        }
+
+        .neon-border-pink {
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.2);
+            border: 2px solid #ff00ff;
+        }
+
+        .neon-border-green {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.2);
+            border: 2px solid #00ff00;
+        }
+
+        .neon-border-yellow {
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.3), inset 0 0 10px rgba(255, 255, 0, 0.2);
+            border: 2px solid #ffff00;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .neon-text-pink {
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .neon-text-green {
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .neon-text-yellow {
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8), 0 0 20px rgba(255, 255, 0, 0.5);
+        }
+
+        /* 測試標記 - 確認這是新版本 */
+        body::before {
+            content: "✓ V2.1 食材欄底部版本";
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #00ff00;
+            color: #000;
+            padding: 4px 8px;
+            font-size: 10px;
+            z-index: 99999;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 9999;">
+        <h1 class="text-4xl font-bold neon-text mb-8">測試頁面</h1>
+        <p class="text-xl text-yellow-400 mb-4">這是 v2.1 版本</p>
+        <p class="text-lg text-cyan-400">食材欄應該在底部中央</p>
+    </div>
+
+    <!-- 食材欄 - 底部居中 -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 neon-border-yellow bg-black bg-opacity-80 rounded-lg p-3"
+        style="z-index:12; max-width: 90vw;">
+        <div class="text-center mb-3">
+            <div class="font-bold neon-text-yellow" style="font-size: 14px;">食材欄 (底部版本)</div>
+        </div>
+        <div class="flex gap-3 flex-wrap justify-center">
+            <!-- 測試食材項目 -->
+            <div class="neon-border-yellow border-opacity-50 rounded p-3 bg-black bg-opacity-50">
+                <div class="flex items-center justify-center gap-2 flex-col">
+                    <i class="fas fa-apple-alt text-red-400" style="font-size: 24px;"></i>
+                    <div style="font-size: 11px;">番茄</div>
+                </div>
+            </div>
+            <div class="neon-border-yellow border-opacity-50 rounded p-3 bg-black bg-opacity-50">
+                <div class="flex items-center justify-center gap-2 flex-col">
+                    <i class="fas fa-egg text-cyan-400" style="font-size: 24px;"></i>
+                    <div style="font-size: 11px;">雞蛋</div>
+                </div>
+            </div>
+            <div class="neon-border-yellow border-opacity-50 rounded p-3 bg-black bg-opacity-50">
+                <div class="flex items-center justify-center gap-2 flex-col">
+                    <i class="fas fa-jar text-yellow-400" style="font-size: 24px;"></i>
+                    <div style="font-size: 11px;">調味罐</div>
+                </div>
+            </div>
+            <div class="neon-border-yellow border-opacity-50 rounded p-3 bg-black bg-opacity-50">
+                <div class="flex items-center justify-center gap-2 flex-col">
+                    <i class="fas fa-bottle-droplet text-amber-700" style="font-size: 24px;"></i>
+                    <div style="font-size: 11px;">醬油罐</div>
+                </div>
+            </div>
+            <div class="neon-border-yellow border-opacity-50 rounded p-3 bg-black bg-opacity-50">
+                <div class="flex items-center justify-center gap-2 flex-col">
+                    <i class="fas fa-leaf text-green-400" style="font-size: 24px;"></i>
+                    <div style="font-size: 11px;">蔥花</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
